@@ -1,4 +1,3 @@
-# projetos-web-bd
 # Projeto CRUD e Banco de Dados — Faculdade
 
 Este repositório diz respeito a um **trabalho acadêmico** desenvolvido durante as disciplinas de **Programação Web**. 
