@@ -95,6 +95,8 @@ app.post('/pontuacoes', (req, res) => {
 
 
 // READ (GET) 
+
+//GET geral 
 app.get('/alunos', (req, res) => {
   db.query('SELECT * FROM alunos', (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -102,6 +104,17 @@ app.get('/alunos', (req, res) => {
   });
 });
 
+// GET por ID - ALUNOS
+app.get('/alunos/:id', (req, res) => {
+  const { id } = req.params;
+  const sql = 'SELECT * FROM alunos WHERE id_aluno = ?';
+  db.query(sql, [id], (err, result) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (result.length === 0) return res.status(404).json({ message: 'Aluno não encontrado' });
+    res.json(result[0]);
+  });
+});
+//GET geral 
 app.get('/professores', (req, res) => {
   db.query('SELECT * FROM professores', (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -109,6 +122,17 @@ app.get('/professores', (req, res) => {
   });
 });
 
+// GET por ID - PROFESSORES
+app.get('/professores/:id', (req, res) => {
+  const { id } = req.params;
+  const sql = 'SELECT * FROM professores WHERE id_professor = ?';
+  db.query(sql, [id], (err, result) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (result.length === 0) return res.status(404).json({ message: 'Professor não encontrado' });
+    res.json(result[0]);
+  });
+});
+//GET geral 
 app.get('/jogos', (req, res) => {
   db.query('SELECT * FROM jogos', (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -116,6 +140,17 @@ app.get('/jogos', (req, res) => {
   });
 });
 
+// GET por ID - JOGOS
+app.get('/jogos/:id', (req, res) => {
+  const { id } = req.params;
+  const sql = 'SELECT * FROM jogos WHERE id_jogo = ?';
+  db.query(sql, [id], (err, result) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (result.length === 0) return res.status(404).json({ message: 'Jogo não encontrado' });
+    res.json(result[0]);
+  });
+});
+//GET geral 
 app.get('/perguntas', (req, res) => {
   db.query('SELECT * FROM perguntas', (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -123,10 +158,33 @@ app.get('/perguntas', (req, res) => {
   });
 });
 
+// GET por ID - PERGUNTAS
+app.get('/perguntas/:id', (req, res) => {
+  const { id } = req.params;
+  const sql = 'SELECT * FROM perguntas WHERE id_pergunta = ?';
+  db.query(sql, [id], (err, result) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (result.length === 0) return res.status(404).json({ message: 'Pergunta não encontrada' });
+    res.json(result[0]);
+  });
+});
+
+//GET geral 
 app.get('/pontuacoes', (req, res) => {
   db.query('SELECT * FROM pontuacoes', (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json(results);
+  });
+});
+
+// GET por ID - PONTUAÇÕES
+app.get('/pontuacoes/:id', (req, res) => {
+  const { id } = req.params;
+  const sql = 'SELECT * FROM pontuacoes WHERE id_pontuacao = ?';
+  db.query(sql, [id], (err, result) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (result.length === 0) return res.status(404).json({ message: 'Pontuação não encontrada' });
+    res.json(result[0]);
   });
 });
 
